@@ -1,0 +1,3 @@
+SHA256(AdvancedFuzzingWorkshop.ovf)= 1d799219caa349333ea75c232614dec2703b637ddb7a7cf09497a8165f5d46a5
+SHA256(AdvancedFuzzingWorkshop-disk1.vmdk)= 7be6ea32053111c0cf5480b6ad6de95fd53e0c5138dd2af9a21c351df44e5c15
+SHA256(AdvancedFuzzingWorkshop-file1.iso)= 0727253098c998c0b7b7963326690419710cdce2479472ca7cfe7adda7a31174
