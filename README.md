@@ -41,8 +41,6 @@ YOU CAN SEND ME THE CRASHES TO MY TWITTER ACCOUNT [@nosoynadiemas](https://twitt
 
 ## Fuzz Challenge 1 - ESIF (Extremely Stupid Image Format) [40 minutes]
 
-WILL BE MADE PUBLIC ON Sep 25, 17:30 ART
-
 Build:
 
     gcc EkoParty1.c -o EkoParty1 -w -lcrypto -lssl
@@ -62,3 +60,5 @@ Run (must be run as root):
     ./EkoParty2
 
 ## Fuzz Challenge 3 - Check your grammar
+
+WILL BE MADE PUBLIC ON Sep 28, 17:30 ART
