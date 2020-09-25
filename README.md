@@ -61,4 +61,4 @@ Run (must be run as root):
 
 ## Fuzz Challenge 3 - Check your grammar
 
-WILL BE MADE PUBLIC ON Sep 28, 17:30 ART
+WILL BE MADE PUBLIC ON Sep 28
