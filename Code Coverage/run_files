@@ -1,0 +1,8 @@
+#!/bin/bash
+FILES=$PWD/AFL/afl_out/queue/*
+for f in $FILES
+do
+ echo "[*] Processing $f file..."
+ ./EkoParty1 "$f" output
+done
+
