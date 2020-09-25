@@ -43,6 +43,22 @@ The winner of each challenge will receive a coupon to spend in [GitHub Shop](htt
 
 WILL BE MADE PUBLIC ON Sep 25, 17:30 ART
 
-## Fuzz Challenge 2 - Crazy HTTP server [45 minutes]
+Build:
 
-## Fuzz Challenge 3 - Inexplicable
+    gcc EkoParty1.c -o EkoParty1 -w -lcrypto -lssl
+
+Run:
+
+    ./EkoParty1 example.ESIF output.ppm
+
+## Fuzz Challenge 2 - Crazy HTTP server [50 minutes]
+
+Build:
+
+    gcc EkoParty2.c -o EkoParty2 -w -lz
+
+Run (must be run as root):
+
+    ./EkoParty2
+
+## Fuzz Challenge 3 - Check your grammar
