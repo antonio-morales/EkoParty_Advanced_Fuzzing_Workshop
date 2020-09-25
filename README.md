@@ -37,7 +37,7 @@ If all it's ok, you'll be able to see a lot of AFL crashes :)
 
 The winner of each challenge will receive a coupon to spend in [GitHub Shop](https://github.myshopify.com/). Second place will also be awarded.
 
-
+YOU CAN SEND ME THE CRASHES TO MY TWITTER ACCOUNT [@nosoynadiemas](https://twitter.com/Nosoynadiemas)
 
 ## Fuzz Challenge 1 - ESIF (Extremely Stupid Image Format) [40 minutes]
 
