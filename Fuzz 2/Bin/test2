@@ -1,0 +1,9 @@
+POST /a
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Accept-Encoding: gzip, deflate
+Accept-Language: en-us
+Content-Type: text/xml; charset=utf-8
+
+yahoo.com=12.132.43.123
+
+
