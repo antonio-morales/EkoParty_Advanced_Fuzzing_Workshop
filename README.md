@@ -39,7 +39,7 @@ The winner of each challenge will receive a coupon to spend in [GitHub Shop](htt
 
 
 
-## Fuzz Challenge 1 - ESIF (Extremely Stupid Image Format) [30 minutes]
+## Fuzz Challenge 1 - ESIF (Extremely Stupid Image Format) [40 minutes]
 
 WILL BE MADE PUBLIC ON Sep 25, 17:30 ART
 
