@@ -63,4 +63,16 @@ Run (must be run as root):
 
 ## Fuzz Challenge 3 - Check your grammar
 
-WILL BE MADE PUBLIC ON Sep 28
+A modified (and vulnerable) UnRTF version
+
+Build:
+
+    ./configure
+    make
+    make install
+
+Run
+
+    ./unrtf [path]
+
+You can find some examples in the "tests" folder
