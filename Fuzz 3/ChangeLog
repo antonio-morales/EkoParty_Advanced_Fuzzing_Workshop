@@ -1,0 +1,288 @@
+0.1
+      - original version, known as "rtf2htm"
+0.2
+      - first Linux version
+0.3
+      - addition of hash storage for all strings
+0.4
+      - support for a few HTML special exprs
+0.5
+      - tables finally work
+0.6
+      - addition of usage()
+0.7
+      - added special chars, \tab, info group, <body>
+0.8
+      - font table support
+0.9.0
+      - images are stored to files
+0.9.1
+      - pict files extensions a bit more accurate
+0.9.2
+      - font size changes (\fs) more accurate.
+0.9.3
+      - fixed bug regarding where <body> goes
+0.9.4
+      - added -nopict option
+0.9.5
+      - fixed table data printing.
+0.9.6
+      - if >1 \cell in a group, font attrs affect all.
+0.9.7
+      - Chunk class renamed Word
+
+0.10.0
+      - input file type is checked, -echo renamed -dump
+0.11.0
+      - addition of ANSI->HTML conversion, plus limited Mac->HTML
+0.11.1
+      - unknown chars are printed as <!--0x##-->
+
+0.12.0
+      - separated parser from word module
+0.12.1
+      - added -version option
+0.12.2
+      - backslash-newline is now \par
+0.12.3
+      - added default font families (\fswiss etc)
+0.12.4
+      - added blurb about program in the output HTML
+0.12.5
+      - added recognition of files with ".RTF" ending, not just ".rtf"
+0.12.6
+      - added charset tables for CP437 and CP850
+0.12.7
+      - fixed bug preventing \'## sequences from being translated
+0.12.8
+      - removed size limit for words, verified DJGPP compilation works.
+0.12.9
+      - compilation bugfix, fixed author/date information
+0.12.10
+      - added --simple switch for generating HTML without SPAN/DIV tags
+
+0.13.0
+      - paragraph alignment added
+0.13.1
+      - fix for words getting lost after \par
+0.13.2
+      - fix for color table not being recognized
+
+0.14.0
+      - separation of word and convert modules
+0.14.1
+      - fixed color table indexing, added support for font background color.
+0.14.2
+      - updated parsing mechanism
+0.14.3
+      - fix for DIV nesting; fix for NS's hiding any table within a span.
+0.14.4
+      - fix for color table parsing; added better underline/strikethru support.
+
+0.15.0
+      - hashing of RTF keywords in convert.c; moved much code out of convert.c
+0.15.1
+      - removed null entries from special.c to reduce program size
+0.15.2
+      - removed no-op entries from hash in convert.c to reduce program size
+0.15.3
+      - first 16-bit MSDOS executable
+0.15.4
+      - fixed paragraph alignment not getting cleared by \pard
+0.15.5
+      - updated code to produce as few paragraph alignment tags as possible
+
+0.16.0
+      - added input buffering to improve speed
+0.16.1
+      - bugfix for printing of debugging strings stored in command hash
+
+0.17.0
+      - hyperlink support added
+0.17.1
+      - added support for several font attributes e.g. smallcaps, caps, \expand
+0.17.2
+      - added Amiga(TM) compilation support
+0.17.3
+      - fixed problem in interpretation of RTF command words
+0.17.4
+      - changed attr.c to use AttrStack (stack of stacks) paradigm
+----program renamed UnRTF----
+0.17.5
+      - began implementation of output personalities; wrote HTML personality.
+0.17.6
+      - added text and vt personalities
+0.17.7
+      - began addition of PostScript(TM) and LaTeX and WPML output
+0.17.8
+      - first fully commented version, removed "last change" lines
+0.17.9
+      - fixed translation between character sets
+0.17.10
+      - PS now supports underline, strikethrough, shadowed text
+0.17.11
+      - PS now uses ISOLatin1Encoding
+0.17.12
+      - PS now supports these fonts: Times,Courier,Symbol,Helvetica
+
+----program is now GNU UnRTF----
+0.18.0
+      - updates to comments, documentation to reflect inclusion in GNU suite.
+0.18.1
+      - updated manual
+
+0.19.1
+      - new maintainers: minor fixes to prevent segmentation violations;
+	further special character code; minor cleanups
+0.19.2
+      - updated some files;
+0.19.3
+      - fix bug #225592: null pointer param in convert.c    
+0.19.4
+      - added unicode support
+0.19.5
+      - removed defective PS support and non-free text files
+	more unicode support
+	improved symbol font support - no longer puts entities in latex output
+	Bug#266020 concerning double slashes fixed
+	Bug#269054 concerning Doctype fixed
+	Bug#287038 security breach fixed 
+		(thanks to Joey Hess <joeyh@debian.org>) 
+0.19.6
+      - fix some latex problems
+0.19.7
+      - updated FSF address
+0.19.8
+      - minor fixes
+0.19.9
+      - included verbose mode
+
+0.20.0
+      - new build system by Claudio Fontana <claudio@gnu.org>
+	fixed creation date spelling and added support for accented characters
+	in titles from Laurent Monin
+0.20.1
+      - minor fix in convert.c for Solaris System
+0.20.2
+      - minor fix to unterminated comment output, added attr_get_param()
+0.20.3
+      - Greek font support added, fix to UTF character processing
+0.20.4
+      - nopict mode bug fixes
+0.20.5
+      - added --noremap option, some html entity corrections, updated to GPL v3
+
+0.21.3
+      - 
+      - added '--quiet' flag which suppresses leading comments in output
+      - default directory for config files is now /usr/local/share/unrtf
+	and this can be changed when configure is run at compilation time
+      - subdirs in config directory eliminated making it easier for a user
+	to supply their own in a single directory specified with -P
+      - code for two hex characters introduced in 0.21.2 completely replaced
+	by more generalised string handling.
+      - major improvements to codepage handling
+      - major improvements in unicode handling
+      - latex config file improved.  Some Greek characters output properly.
+      - troff_mm config file improved such that this option is now useful
+0.21.2
+      - added feof() calls to fgets() and fgetchar() instances so end-of
+        file is correctly determined under AIX
+      - supplemented code to handle special characters specified with
+        two hex characters (e.g. \'81\'83) as output by some RTF
+	writers.  This code is experimental, and uses the SHIFT_JIS
+	codepage for conversion.
+      - definitions in html.config changed to ensure values of markup variables
+        are enclosed in double quotes, e.g. size="3" instead of size=3.  This
+	is a first step towards supporting production of XHTML.
+0.21.1
+      - fixed strings in unicode_to_string() (unicode.c) to be null
+	terminated instead of newline terminated.  This prevents spurious
+	newline output after characters in Symbol font.  It also overcomes a
+	fault whereby characters in the symbol font were being output as
+	unicode instead of the desired entities defined in the output
+	specification.
+      - suppressed output of <font face="Symbol"> as this is wrong if
+	characters are changed to unicode or entities
+      - changed path set with -P to be directory containing the output
+	charmaps specifications, and changed the default path to
+	/usr/local/lib/unrtf for the same reason.  This makes it possible
+	to set a different default path, useful for example if one cannot
+	install files in /usr/local/lib.
+      - dropped "outputs" and "charmaps" sub-directories in the configuration
+        directory.  Output configuration files are now named "html.conf",
+	"text.conf" etc. and the symbol font charmap file is "SYMBOL.charmap".
+      - charmap specifications now sought in the search path
+      - compensate for RTF with unicodes specified as negative numbers,
+	possibly due to overflow on a 16bit machine?
+      - changed processing of --html (etc.) args so that "-t html" and
+	"--html" are equivalent, i.e. both subject to search path set with
+	"-P"
+0.21.3:
+      - major changes to code page support and UTF handling
+      - improved LaTeX output
+      - /usr/local/lib no longer hard wired - set by configure
+0.21.4:
+      - ignore embedded picture which cannot be rendered
+      - allow unnested bold/italic to be interpreted as expected.  Such input
+      	may be outside the RTF spec, but can be created by TextEdit.  The
+	change has been limited to the bold command (cmd_b in convert.c)
+	on an experimental basis.  If no bugs appear it could be more generally
+	applied.
+0.21.5:
+      - improved code for the unnested case and extended to more RTF commands
+0.21.6:
+      - improved man page
+      - improved USAGE string
+      - fix to attr.c for clang compilation
+0.21.7:
+      - improved code for creation of image files when RTF files containing
+      	images processed
+      - prevent segmentation violations with RTF input containing corrupt
+        \info content
+0.21.8:
+      - Changed bug reporting in unrtf.1
+      - Test file for newly supported EMF image type.
+      - Fixed all -Wall compilation warning
+      - Bogus test in op_translate_buffer() caused error messages and data
+		truncation
+      - cmd_maybe_ignore(): test next command presence in the cmd hashes
+		instead of listing locally the commands that should be processed
+      - Fix unrtf looping when closing any underlining except the basic (ul)
+		one
+      - Open Picture files in wb mode instead of w for Windows portability.
+		Fixes bug #21274
+      - html output doctype value needs to be quoted
+      - Skip binary data after \bin command
+      - Simplified shared string storage in hash.c and word.c: suppressed
+		the "index" value and replaced it by string address. Simpler
+		and faster. Other changes are making shared string refs const
+      - Better processing of \pict including addition of EMF type.
+      - Fix access overflow occurring while translating unicode data from
+		garbled or truncated file
+      - Fix buffer access overflow caused by truncated file
+      - Need to check word_string() output not NULL in cmd_maybe_ignore()
+      - String equality test while searching the command table for command
+		having parameter would access byte out of allocated memory
+		and produce potentially random result. Fixes AddressSanitizer
+		error found by Hanno Boeck
+      - String equality test while searching the command table for command
+		having parameter would access byte out of allocated memory
+		and produce potentially random result. Fixes AddressSanitizer
+		error found by Hanno Boeck
+      - Substitute appropriate prefix-depending paths in the man page prior
+		to installing
+      - Limit depth of group embedding to guard against malicious files with
+		thousands of consecutive {
+      - check index before access into month_strings array
+      - attr_get_param(): silence warning message in frequent and normal
+		case (Fabian Keil)
+      - attrstack_drop(): Properly drop the last stack element (Fabian Keil)
+		+ get rid of unused variable in attrstack_push()
+      - hash_get_string(): Reject invalid indexes (author: Fabian Keil)
+0.21.9:
+      - Support EndNote reference citations in convert.c
+      - Improved handling of some tables
+      - Fixed --text processing broken in 0.21.8 - outputs/text.conf
+0.21.10:
+      - added gentoo automake-fix and iconv-detection patches

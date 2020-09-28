@@ -1,0 +1,48 @@
+0.21.10 (23 Nov 2018):
+	Applied gentoo automake-fix and iconv.detection patches
+0.21.9 (2 Jan 2015):
+	Correct text conversion failure introduced in 0.21.8
+	Improved processing of tables
+	Added support for reference citations inserted by EndNote
+0.21.8 (21 Dec 2014):
+	Changed bug reporting in unrtf.1
+	Test file for newly supported EMF image type.
+	Fixed all -Wall compilation warning
+	Bogus test in op_translate_buffer() caused error messages and data
+		truncation
+	cmd_maybe_ignore(): test next command presence in the cmd hashes
+		instead of listing locally the commands that should be processed
+	Fix unrtf looping when closing any underlining except the basic (ul)
+		one
+	Open Picture files in wb mode instead of w for Windows portability.
+		Fixes bug #21274
+	html output doctype value needs to be quoted
+	Skip binary data after \bin command
+	Simplified shared string storage in hash.c and word.c: suppressed
+		the "index" value and replaced it by string address. Simpler
+		and faster. Other changes are making shared string refs const
+	Better processing of \pict including addition of EMF type.
+	Fix access overflow occurring while translating unicode data from
+		garbled or truncated file
+	Fix buffer access overflow caused by truncated file
+	Need to check word_string() output not NULL in cmd_maybe_ignore()
+	String equality test while searching the command table for command
+		having parameter would access byte out of allocated memory
+		and produce potentially random result. Fixes AddressSanitizer
+		error found by Hanno Boeck
+	String equality test while searching the command table for command
+		having parameter would access byte out of allocated memory
+		and produce potentially random result. Fixes AddressSanitizer
+		error found by Hanno Boeck
+	Substitute appropriate prefix-depending paths in the man page prior
+		to installing
+	Limit depth of group embedding to guard against malicious files with
+		thousands of consecutive {
+	check index before access into month_strings array
+	attr_get_param(): silence warning message in frequent and normal
+		case (Fabian Keil)
+	attrstack_drop(): Properly drop the last stack element (Fabian Keil)
+		+ get rid of unused variable in attrstack_push()
+	hash_get_string(): Reject invalid indexes (author: Fabian Keil)
+0.21.7 (13 Dec 2014):
+	improved creations of image files for images included in RTF files

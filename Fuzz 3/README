@@ -1,0 +1,22 @@
+Greetings,
+
+UnRTF is a moderately complicated converter from RTF to other
+formats. It works reasonably well but it has bugs and the output is 
+a somewhat ugly. Bugs are known to include paragraph alignment
+and picture storing.
+
+Compiling with GCC: type "make all", and assuming you have GCC
+and GNU make, it should compile without any warnings or errors 
+under Linux, BSD, and DOS (using DJGPP). 
+
+This program includes no warranty whatsoever. It is provided
+"AS IS". For more information please read the COPYING
+document, which should be included with the source code.
+It describes the GNU Public License, which covers UnRTF.
+
+Enjoy,
+
+Zachary Smith
+  tuorfa@yahoo.com
+
+Jan. 7th, 2004
