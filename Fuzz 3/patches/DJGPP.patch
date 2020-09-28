@@ -1,0 +1,184 @@
+From st001906@HRZ1.hrz.tu-darmstadt.de  Fri Oct  1 02:15:50 2004
+Received: from plexus.physiol.usyd.edu.au (plexus.physiol.usyd.edu.au [129.78.131.2])
+	by phoenix.physiol.usyd.edu.au (8.9.1/8.9.1) with ESMTP id CAA25172
+	for <daved@phoenix.physiol.usyd.edu.au>; Fri, 1 Oct 2004 02:15:48 +1000 (EST)
+Received: from mailserver2.hrz.tu-darmstadt.de (root@mailserver2.hrz.tu-darmstadt.de [130.83.47.4])
+	by plexus.physiol.usyd.edu.au (8.9.1/8.9.1) with ESMTP id CAA15303
+	for <daved@physiol.usyd.edu.au>; Fri, 1 Oct 2004 02:15:46 +1000 (EST)
+Received: from HRZ1.hrz.tu-darmstadt.de (hrz1.hrz.tu-darmstadt.de [130.83.47.3])
+	by mailserver2.hrz.tu-darmstadt.de (8.12.10/8.12.8) with ESMTP id i8UGG1pr014256
+	for <daved@physiol.usyd.edu.au>; Thu, 30 Sep 2004 18:16:01 +0200
+Received: from HRZ1/SpoolDir by HRZ1.hrz.tu-darmstadt.de (Mercury 1.48);
+    30 Sep 04 18:15:23 +0200
+Received: from SpoolDir by HRZ1 (Mercury 1.48); 30 Sep 04 18:14:40 +0200
+Received: from hrz-nts2 (130.83.126.96) by HRZ1.hrz.tu-darmstadt.de (Mercury 1.48) with ESMTP;
+    30 Sep 04 18:14:14 +0200
+From: "Juan Manuel Guerrero" <st001906@HRZ1.hrz.tu-darmstadt.de>
+Organization: Darmstadt University of Technology
+To: daved@physiol.usyd.edu.au
+Date: Thu, 30 Sep 2004 18:14:14 +0200
+MIME-Version: 1.0
+Subject: DJGPP specific patch for unrtf 0.19.3
+Message-ID: <415C4CF6.22032.62F1C3E@localhost>
+Return-receipt-to: "Juan Manuel Guerrero" <st001906@hrz1.hrz.tu-darmstadt.de>
+Priority: normal
+X-mailer: Pegasus Mail for Windows (v4.02a, DE v4.02 R1)
+Content-type: text/plain; charset=US-ASCII
+Content-transfer-encoding: 7BIT
+Content-description: Mail message body
+X-TUD-HRZ-MailScanner: Found to be clean
+X-Spam-Status: No, hits=-1.8 required=4.0
+	tests=BAYES_20,FROM_ENDS_IN_NUMS,MAILTO_TO_SPAM_ADDR,
+	      PATCH_UNIFIED_DIFF
+	version=2.55
+X-Spam-Level: 
+X-Spam-Checker-Version: SpamAssassin 2.55 (1.174.2.19-2003-05-19-exp)
+Status: RO
+Content-Length: 4936
+Lines: 144
+
+Hello,
+I do not know if you are the new maintainer of unrtf but I send you this patch anyway.
+I have added minor changes to some of the files to get DJGPP support.
+DJGPP needs the definition of exit() in the files error.c, main.c and output.c.
+I have also changed the Makefile to some extend to make the installation process
+more flexible.
+It should be noticed that the tests target is broken. The tests target has the line:
+   ${TARGET} test/slashnewline.rtf > test/slashnewline.html
+but the source package contains a file called:
+   test/slashnew.rtf
+As can be seen the filenames do not match.
+May be the patch below may be of some interest for you.
+
+Regards,
+Juan M. Guerrero
+
+
+
+ChangeLog:
+
+2004-09-25  Juan Manuel Guerrero  <st001906@hrz1.hrz.tu-darmstadt.de>
+
+	* Makefile: Added SHELL, prefix, mandir and EXEEXT variables
+	to make installation process more flexible.
+	* convert.c (print_with_special_exprs): Pacify gcc.
+	(word_print_core): Pacify gcc.
+	* error.c [__DJGPP__]: included stdlib.h for exit() definition.
+	* main.c [__DJGPP__]: included stdlib.h for exit() definition.
+	* output.c [__DJGPP__]: included stdlib.h for exit() definition.
+
+
+
+diff -apruNU3 unrtf-0.19.3.orig/Makefile unrtf-0.19.3/Makefile
+--- unrtf-0.19.3.orig/Makefile	2004-02-18 23:35:02.000000000 +0000
++++ unrtf-0.19.3/Makefile	2004-09-25 04:12:00.000000000 +0000
+@@ -24,6 +24,12 @@
+ # Makefile for UnRTF
+ #
+ 
++SHELL = /bin/sh
++
++prefix=/usr/local
++mandir=/${prefix}/man/man1
++
++EXEEXT=
+ 
+ CFLAGS=-g -Wall
+ CC=gcc
+@@ -32,7 +38,7 @@ OBJS=convert.o word.o error.o main.o has
+ 	parse.o malloc.o attr.o util.o \
+ 	output.o html.o text.o vt.o ps.o latex.o wpml.o entity.o
+ 
+-TARGET=unrtf
++TARGET=unrtf${EXEEXT}
+ 
+ ${TARGET}:	${OBJS}
+ 	gcc ${OBJS} -o ${TARGET}
+@@ -57,7 +63,10 @@ all:	${TARGET} bcount
+ 	rm -f ${OBJS}
+ 
+ install:	${TARGET}
+-	cp ${TARGET} /usr/local/bin
++	-mkdir -p ${prefix}/bin
++	-mkdir -p ${mandir}
++	cp ${TARGET} ${prefix}/bin
++	cp unrtf.1 ${mandir}
+ 
+ attr.o: attr.c defs.h error.h attr.h main.h malloc.h
+ convert.o: convert.c attr.h convert.h defs.h error.h hash.h main.h malloc.h \
+diff -apruNU3 unrtf-0.19.3.orig/convert.c unrtf-0.19.3/convert.c
+--- unrtf-0.19.3.orig/convert.c	2004-02-18 23:35:02.000000000 +0000
++++ unrtf-0.19.3/convert.c	2004-09-25 04:11:36.000000000 +0000
+@@ -2369,6 +2369,7 @@ enum { SMALL=0, BIG=1 };
+ 
+ 	CHECK_PARAM_NOT_NULL(s);
+ 
++	state=SMALL;  /* Pacify gcc,  st001906 - 0.19.3 */
+ 	if (simulate_smallcaps) {
+ 		if (*s >= 'a' && *s <= 'z') {
+ 			state=SMALL;
+@@ -2743,7 +2744,7 @@ word_print_core (Word *w)
+ 					int have_param=FALSE, param=0;
+ 					HashItem *hip;
+ 					char *p;
+-					int match;
++					int match=FALSE;  /* Pacify gcc,  st001906 - 0.19.3 */
+ 
+ 					/* Look for a parameter */
+ 					p=s;
+diff -apruNU3 unrtf-0.19.3.orig/error.c unrtf-0.19.3/error.c
+--- unrtf-0.19.3.orig/error.c	2004-02-18 23:35:02.000000000 +0000
++++ unrtf-0.19.3/error.c	2004-09-25 04:11:36.000000000 +0000
+@@ -34,11 +34,12 @@
+  * 22 Sep 01, tuorfa@yahoo.com: removed mention of line number in handlers
+  * 22 Sep 01, tuorfa@yahoo.com: added function-level comment blocks 
+  * 08 Oct 03, daved@physiol.usyd.edu.au: added stdlib.h for linux
++ * 25 Sep 04, st001906@hrz1.hrz.tu-darmstadt.de: added stdlib.h for djgpp
+  *--------------------------------------------------------------------*/
+ 
+ 
+ #include <stdio.h>
+-#if linux /* daved - 0.19.1 */
++#if linux || __DJGPP__ /* daved - 0.19.1,  st001906 - 0.19.3 */
+ #include <stdlib.h>
+ #endif
+ 
+diff -apruNU3 unrtf-0.19.3.orig/main.c unrtf-0.19.3/main.c
+--- unrtf-0.19.3.orig/main.c	2004-02-18 23:35:02.000000000 +0000
++++ unrtf-0.19.3/main.c	2004-09-25 04:11:36.000000000 +0000
+@@ -37,13 +37,14 @@
+  * 22 Sep 01, tuorfa@yahoo.com: added function-level comment blocks 
+  * 23 Sep 01, tuorfa@yahoo.com: added wpml switch
+  * 08 Oct 03, daved@physiol.usyd.edu.au: added stdlib.h for linux
++ * 25 Sep 04, st001906@hrz1.hrz.tu-darmstadt.de: added stdlib.h for djgpp
+  *--------------------------------------------------------------------*/
+ 
+ 
+ 
+ #include <stdio.h>
+ #include <string.h>
+-#if linux /* daved - 0.19.0 */
++#if linux || __DJGPP__ /* daved - 0.19.0,  st001906 - 0.19.3 */
+ #include <stdlib.h>
+ #endif
+ 
+diff -apruNU3 unrtf-0.19.3.orig/output.c unrtf-0.19.3/output.c
+--- unrtf-0.19.3.orig/output.c	2004-02-18 23:35:02.000000000 +0000
++++ unrtf-0.19.3/output.c	2004-09-25 04:11:36.000000000 +0000
+@@ -31,12 +31,13 @@
+  * 22 Sep 01, tuorfa@yahoo.com: addition of functions to change font size
+  * 22 Sep 01, tuorfa@yahoo.com: added function-level comment blocks 
+  * 08 Oct 03, daved@physiol.usyd.edu.au: added stdlib.h for linux
++ * 25 Sep 04, st001906@hrz1.hrz.tu-darmstadt.de: added stdlib.h for djgpp
+  *--------------------------------------------------------------------*/
+ 
+ 
+ #include <stdio.h>
+ #include <string.h>
+-#if linux /* daved - 0.19.0 */
++#if linux || __DJGPP__ /* daved - 0.19.0,  st001906 - 0.19.3 */
+ #include <stdlib.h>
+ #endif
+ #include "malloc.h"
+
+

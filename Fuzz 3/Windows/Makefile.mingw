@@ -1,0 +1,43 @@
+#
+# Makefile for unrtf (MinGW version)
+#
+
+CC	= gcc
+LD	= gcc
+
+INSTALL		= cp -f
+INSTALL_PROGRAM	= $(INSTALL)
+INSTALL_DATA	= $(INSTALL)
+
+# must be equal to DEBUG or NDEBUG
+DB	= NDEBUG
+OPT	= -O2
+
+LDLIBS	= -liconv -lShlwapi
+
+CFLAGS	= -Wall $(OPT) -D$(DB) -I. -DHAVE_CONFIG_H
+LDFLAGS	= 
+
+SRCS = attr.c convert.c error.c hash.c my_iconv.c main.c  \
+     malloc.c output.c parse.c path.c unicode.c user.c \
+     util.c word.c unrtf_w.c
+OBJS = attr.o convert.o error.o hash.o my_iconv.o main.o  \
+     malloc.o output.o parse.o path.o unicode.o user.o \
+     util.o word.o unrtf_w.o
+
+PROGS = unrtf
+
+VPATH = ./:../src
+
+all:  $(PROGS)
+
+clean:
+	rm -f $(OBJS)
+	rm -f $(PROGS)
+
+unrtf : $(OBJS)
+	@rm -f $@
+	$(LD) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<

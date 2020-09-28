@@ -1,0 +1,9 @@
+0001-Fix-manpage-section-specification.patch
+0002-Hand-over-SHAREDIR-via-CPPFLAGS.patch
+0003-Make-SHAREDIR-unrtf-default-path-for-output-format-c.patch
+0004-Place-output-config-files-in-sharedir-instead-of-lib.patch
+0005-Tell-unrtf-where-to-look-for-output-format-config-fi.patch
+0006-Disable-latex-test-latex-output-is-broken.patch
+0007-Get-fully-rid-of-hardcoded-local-lib-paths.patch
+0008-Ensure-that-the-picture-extracted-during-testing-is-.patch
+0009-Update-test-file-set-to-ensure-proper-cleaning-of-te.patch
