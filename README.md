@@ -1,5 +1,10 @@
 # EkoParty - Advanced Fuzzing Workshop
 
+## Next editions
+
+2nd edition -> https://github.com/antonio-morales/Hackfest_Advanced_Fuzzing_Workshop
+
+## Slides
 Start here -> [Workshop Slides](https://github.com/antonio-morales/EkoParty_Advanced_Fuzzing_Workshop/blob/master/EkoParty%20Workshop%20Format.pdf)
 
 ## Requirements
